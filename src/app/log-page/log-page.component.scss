@@ -1,0 +1,337 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fc;
+  color: #333;
+  font-size: 13px;
+}
+
+.top-section {
+  background-color: #f7f9fc;
+  padding: 20px;
+  border-bottom: 1px solid #ccc; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+.image-logo {
+  width: 200px;
+  height: 55px;
+  margin-right: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: #ccc;
+  
+}
+
+.form-title {
+  font-size: 24px;
+  margin: 0;
+  flex-grow: 1; 
+  text-align: center;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info span {
+  margin-right: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+}
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+}
+.sidebar .logo {
+  margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar nav ul li a.active, 
+.sidebar nav ul li a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+header .divider {
+  position: absolute;
+  bottom: -20px; 
+  left: 0;
+  width: 100%;
+}
+
+.job-panel-nav {
+  background-color: #f3f4f6;
+  border-radius: 5px;
+  width: 250px;
+  padding: 0;
+}
+
+.job-panel-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job-panel-nav .dropdown {
+  position: relative;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.job-panel-nav .dropdown-toggle {
+  cursor: pointer;
+  
+  padding: 10px;
+  width: 200px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+
+.job-panel-nav .dropdown-menu {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  position: relative;
+  left: 0;
+  top: 0; 
+  width: 200px;
+  z-index: 1;
+  padding: 0;
+}
+
+  .job-panel-nav .dropdown-menu li {
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+}
+.job-panel-nav .dropdown-menu li:last-child {
+  border-bottom: none; 
+}
+.job-panel-nav .dropdown-menu li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.job-panel-nav .dropdown-menu li a.active {
+  background-color: #007bff; 
+  color: #fff;
+}
+
+.job-panel-nav .dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+.job-panel-nav .dropdown-menu li a.active::before {
+  content: "▶"; 
+  color: #fff;
+  margin-right: 8px;
+}
+.active-link {
+  font-weight: bold;
+  color: #007bff;
+}
+.aksiyon-container{
+  margin-left: 50px;
+  margin-bottom: 50px;
+  margin-top: 40px;
+}
+.log-container {
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 50px;
+  }
+  .log-section {
+    flex: 1; /* Both charts will take equal width */
+    min-width: 300px; /* Minimum width for each chart */
+    margin-top: 20px;
+}
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s; 
+  }
+  
+  
+  button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .show-more button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  .show-more-Visit{
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  .show-more-less-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .show-more button:hover {
+    background-color: #0056b3;
+  }
+  .actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  
+  .actions-row button[mat-button] {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .actions button:hover{
+    background-color: #c82333;
+    color: #fff;
+  }
+  .actions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  
+  .left-actions {
+    display: flex;
+    gap: 10px; 
+  }
+  
+  .left-actions button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    border-radius: 8px; 
+    transition: background-color 0.2s, box-shadow 0.2s; 
+  }
+  
+  .left-actions button:hover {
+    background-color: #d32f2f; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .right-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end; 
+  }
+  
+  .right-actions button:first-child {
+    margin-bottom: 10px; 
+  }
+  
+  .restore-button {
+    background-color: #4ac34e; 
+    color: white;
+  }
+  
+  .restore-button:hover {
+    background-color: #4eab3c; 
+    color: white;
+  }
+  .charts-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust this value for spacing between the charts */
+    flex-wrap: wrap; /* This will make the charts stack on smaller screens */
+}
+  
+  

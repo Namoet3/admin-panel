@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://localhost:5231/swagger/",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

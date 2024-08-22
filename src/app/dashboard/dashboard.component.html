@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GÜRİŞ Job Application</title>
+    <link rel="stylesheet" href="dashboard.component.scss">
+</head>
+<body>
+  <div class="top-section">
+    <div class="image-row">
+      <a href="https://www.guris.com.tr/" target="_blank">
+        <img src="assets/guris_logo1.png" alt="Guris logo" loading="lazy" class="image-logo">
+      </a>  
+      <h1 class="form-title">Başvurular</h1>
+      <div class="user-info">
+        <span>Hoşgeldin, <strong>Admin</strong></span>
+        <button class="logout-btn">Çıkış Yap</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <aside class="sidebar">
+      <div class="divider"></div>
+      <nav class="job-panel-nav">
+        <ul>
+          <li class="dropdown">
+            <h4 class="dropdown-toggle" (click)="toggleDropdown($event)">İş Başvuru Paneli</h4>
+            <ul class="dropdown-menu" *ngIf="isDropdownOpen">
+              <li><a routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a></li> 
+              <li><a routerLink="/ilk-onay" routerLinkActive="active-link">1. Onay</a></li>
+              <li><a routerLink="/ikinci-onay" routerLinkActive="active-link">2. Onay</a></li>
+              <li><a routerLink="/logs" routerLinkActive="active-link">Log Kayıtları</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="dashboard-container fade-in delay-1s">
+      <router-outlet></router-outlet>
+
+      <div class="summary-container">
+        <h2 class="summary-title">Günlük ve Haftalık Özet</h2>
+        <div class="summary-cards">
+            <div class="summary-card">
+                <h3>Bugün</h3>
+                <p>Bugün alınan başvuru sayısı: {{ applicationsToday }}</p>
+            </div>
+            <div class="summary-card">
+                <h3>Bu Hafta</h3>
+                <p>Bu hafta alınan başvuru sayısı: {{ applicationsThisWeek }}</p>
+            </div>
+            <!-- <div class="summary-card">
+                <h3>Bugün Sayfayı Ziyaret Edenler</h3>
+                <p>Bugün sayfası ziyaret eden kullanıcı sayısı: {{ pageVisitsToday }}</p>
+            </div> -->
+            <div class="summary-card">
+                <h3>Haftalık Ziyaretçi</h3>
+                <p>Bu hafta sayfayı ziyaret edenlerin sayısı: {{ pageVisitsThisWeek }}</p>
+            </div>
+            <div class="summary-card">
+                <h3>En Popüler Saati</h3>
+                <p>En popüler başvuru saati: {{ popularTime }}</p>
+            </div>
+            <div class="summary-card">
+                <h3>En Yoğun Gün</h3>
+                <p>Bu hafta en yoğun başvuru günü: {{ busiestDay }}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+      <h1 class="dashboard-title">Grafikler</h1>
+      <div class="charts-row">
+        <div class="chart-container fade-in delay-1s">
+          <h2>Başvuruların Zamana Göre Yaş Ortalaması</h2>
+          <canvas id="ageAverageChart"></canvas>
+        </div>
+        <div class="chart-container fade-in delay-1s">
+          <h2>Şehir Dağılımları</h2>
+          <canvas id="cityChart"></canvas>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-container fade-in delay-2s">
+          <h2>Yaş Dağılımları</h2>
+          <canvas id="ageChart"></canvas>
+        </div>
+
+        <div class="chart-container fade-in delay-2s">
+          <h2>Yabancı Dil ve Yetkinlikleri Dağılımı</h2>
+          <canvas id="languageProficiencyChart"></canvas>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-container fade-in delay-3s">
+          <div clas="small-chart-container">
+            <h2>Cinsiyet Dağılımı</h2>
+            <canvas id="genderChart" width="500" height="500"></canvas>
+          </div>
+        </div>
+        
+        <div class="chart-container fade-in delay-3s">
+          <div class="small-chart-container">
+              <h2>Eğitim Seviyesi Dağılımı</h2>
+              <canvas id="educationChart" width="500" height="500"></canvas>
+          </div>
+      </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-container fade-in delay-4s">
+          <h2>Geçmiş İş Pozisyonları</h2>
+          <canvas id="jobPositionsChart"></canvas>
+        </div>
+        <div class="chart-container fade-in delay-4s">
+          <h2>Her Ay için Ortalama Başvuran Not Dağılımları</h2>
+          <canvas id="gpaByMonthChart"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

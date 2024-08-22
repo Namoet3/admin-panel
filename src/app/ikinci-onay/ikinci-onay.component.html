@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GÜRİŞ Job Application</title>
+</head>
+<body>
+  <div class="top-section">
+    <div class="image-row">
+      <a href="https://www.guris.com.tr/" target="_blank">
+        <img src="assets/guris_logo1.png" alt="Guris logo" loading="lazy" class="image-logo">
+      </a>  
+      <h1 class="form-title">Başvurular</h1>
+      <div class="user-info">
+        <span>Hoşgeldin, <strong>Admin</strong></span>
+        <button class="logout-btn">Çıkış Yap</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <aside class="sidebar">
+      <div class="divider"></div>
+      <nav class="job-panel-nav">
+        <ul>
+          <li class="dropdown">
+            <h4 class="dropdown-toggle" (click)="toggleDropdown($event)">İş Başvuru Paneli</h4>
+            <ul class="dropdown-menu" *ngIf="isDropdownOpen">
+              <li><a routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a></li> 
+              <li><a routerLink="/ilk-onay" routerLinkActive="active-link">1. Onay</a></li>
+              <li><a routerLink="/ikinci-onay" routerLinkActive="active-link">2. Onay</a></li>
+              <li><a routerLink="/logs" routerLinkActive="active-link">Log Kayıtları</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <main>
+        <main class="content">
+            <router-outlet></router-outlet>
+                  <header>
+                      <h2>2. Onay Filtre</h2>
+                  </header>
+                  <form class="filter-form">
+                    <div class="form-group">
+                      <label for="name">Ad</label>
+                      <input type="text" id="name" [(ngModel)]="filter.firstName" name="firstName">
+                    </div>
+                    <div class="form-group">
+                      <label for="surname">Soyad</label>
+                      <input type="text" id="surname" [(ngModel)]="filter.lastName" name="lastName">
+                    </div>
+                    <div class="form-group">
+                      <label for="reference">Referans Adı Soyadı</label>
+                      <input type="text" id="reference" [(ngModel)]="filter.referenceName" name="referenceName">
+                    </div>
+                    <div class="form-group">
+                      <label for="disability">Engellilik Durumu</label>
+                      <select id="disability" [(ngModel)]="filter.disability" name="disability">
+                        <option value="">Seçiniz</option>
+                        <option value="Engelli">Engelli</option>
+                        <option value="Sağlıklı">Sağlıklı</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="transcript">Transkript Notu Aralığı</label>
+                      <div class="transcript-range">
+                        <input type="text" id="transcript-min" [(ngModel)]="filter.gpaMin" name="gpaMin">
+                        <span>-</span>
+                        <input type="text" id="transcript-max" [(ngModel)]="filter.gpaMax" name="gpaMax">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="language">Yabancı dil ve seviyesi</label>
+                      <div class="language-pro">
+                        <input type="text" id="languageName" [(ngModel)]="filter.languageName" name="languageName" placeholder="Dil">
+                        <span>-</span>
+                        <select id="languageProficiency" [(ngModel)]="filter.Proficiency" name="Proficiency">
+                          <option value="">Seviye</option>
+                          <option value="Çok iyi">Çok İyi</option>
+                          <option value="İyi">İyi</option>
+                          <option value="Orta">Orta</option>
+                          <option value="Başlangıç">Başlangıç</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="city">Yaşadığı İl</label>
+                      <select id="city" [(ngModel)]="filter.city" name="city">
+                        <option value="">Seçiniz</option>
+                        <option value="ankara">Ankara</option>
+                        <option value="istanbul">İstanbul</option>
+                        <option value="izmir">İzmir</option>
+                        <option value="Adana">Adana</option>
+                        <option value="Adıyaman">Adıyaman</option>
+                        <option value="Afyonkarahisar">Afyonkarahisar</option>
+                        <option value="Ağrı">Ağrı</option>
+                        <option value="Amasya">Amasya</option>
+                        <option value="Antalya">Antalya</option>
+                        <option value="Artvin">Artvin</option>
+                        <option value="Aydın">Aydın</option>
+                        <option value="Balıkesir">Balıkesir</option>
+                        <option value="Bilecik">Bilecik</option>
+                        <option value="Bingöl">Bingöl</option>
+                        <option value="Bitlis">Bitlis</option>
+                        <option value="Bolu">Bolu</option>
+                        <option value="Burdur">Burdur</option>
+                        <option value="Bursa">Bursa</option>
+                        <option value="Çanakkale">Çanakkale</option>
+                        <option value="Çankırı">Çankırı</option>
+                        <option value="Çorum">Çorum</option>
+                        <option value="Denizli">Denizli</option>
+                        <option value="Diyarbakır">Diyarbakır</option>
+                        <option value="Edirne">Edirne</option>
+                        <option value="Elazığ">Elazığ</option>
+                        <option value="Erzincan">Erzincan</option>
+                        <option value="Erzurum">Erzurum</option>
+                        <option value="Eskişehir">Eskişehir</option>
+                        <option value="Gaziantep">Gaziantep</option>
+                        <option value="Giresun">Giresun</option>
+                        <option value="Gümüşhane">Gümüşhane</option>
+                        <option value="Hakkari">Hakkari</option>
+                        <option value="Hatay">Hatay</option>
+                        <option value="Isparta">Isparta</option>
+                        <option value="Mersin">Mersin</option>
+                        <option value="Kars">Kars</option>
+                        <option value="Kastamonu">Kastamonu</option>
+                        <option value="Kayseri">Kayseri</option>
+                        <option value="Kırklareli">Kırklareli</option>
+                        <option value="Kırşehir">Kırşehir</option>
+                        <option value="Kocaeli">Kocaeli</option>
+                        <option value="Konya">Konya</option>
+                        <option value="Kütahya">Kütahya</option>
+                        <option value="Malatya">Malatya</option>
+                        <option value="Manisa">Manisa</option>
+                        <option value="Kahramanmaraş">Kahramanmaraş</option>
+                        <option value="Mardin">Mardin</option>
+                        <option value="Muğla">Muğla</option>
+                        <option value="Muş">Muş</option>
+                        <option value="Nevşehir">Nevşehir</option>
+                        <option value="Niğde">Niğde</option>
+                        <option value="Ordu">Ordu</option>
+                        <option value="Rize">Rize</option>
+                        <option value="Sakarya">Sakarya</option>
+                        <option value="Samsun">Samsun</option>
+                        <option value="Siirt">Siirt</option>
+                        <option value="Sinop">Sinop</option>
+                        <option value="Sivas">Sivas</option>
+                        <option value="Tekirdağ">Tekirdağ</option>
+                        <option value="Tokat">Tokat</option>
+                        <option value="Trabzon">Trabzon</option>
+                        <option value="Tunceli">Tunceli</option>
+                        <option value="Şanlıurfa">Şanlıurfa</option>
+                        <option value="Uşak">Uşak</option>
+                        <option value="Van">Van</option>
+                        <option value="Yozgat">Yozgat</option>
+                        <option value="Zonguldak">Zonguldak</option>
+                        <option value="Aksaray">Aksaray</option>
+                        <option value="Bayburt">Bayburt</option>
+                        <option value="Karaman">Karaman</option>
+                        <option value="Kırıkkale">Kırıkkale</option>
+                        <option value="Batman">Batman</option>
+                        <option value="Şırnak">Şırnak</option>
+                        <option value="Bartın">Bartın</option>
+                        <option value="Ardahan">Ardahan</option>
+                        <option value="Iğdır">Iğdır</option>
+                        <option value="Yalova">Yalova</option>
+                        <option value="Karabük">Karabük</option>
+                        <option value="Kilis">Kilis</option>
+                        <option value="Osmaniye">Osmaniye</option>
+                        <option value="Düzce">Düzce</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="experience">İş Tecrübesi</label>
+                      <select id="experience" [(ngModel)]="filter.experience" name="experience">
+                        <option value="">Seçiniz</option>
+                        <option value="1 yıldan az">1 yıldan az</option>
+                        <option value="1-2 yıl">1-2 yıl</option>
+                        <option value="2-5 yıl">2-5 yıl</option>
+                        <option value="5 yıldan fazla">5 yıldan fazla</option>
+                      </select>
+                    </div>
+      
+                  </form>
+                <div class="actions">
+                  <button class="reset-btn" (click)="resetFilters()">Temizle</button>
+                  <button class="filter-btn" (click)="filterUsers()">Filtrele</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th><input type="checkbox" (change)="toggleSelectAll($event)"></th>
+                          <th>#</th>
+                          <th (click)="sort('firstName')" class="sortable-header">Ad</th>
+                          <th (click)="sort('lastName')" class="sortable-header">Soyad</th>
+                          <th (click)="sort('city')" class="sortable-header">Çalışılacak İl</th>
+                          <th (click)="sort('university')" class="sortable-header">Eğitim Gördüğü Kurum</th>
+                          <th (click)="sort('program')" class="sortable-header">Bölüm</th>
+                          <th (click)="sort('gpa')" class="sortable-header">Transkript Notu</th>
+                          <th>E-posta</th>
+                          <th>Telefon</th>
+                          <th (click)="sort('reference')" class="sortable-header">Referans</th>
+                          <th (click)="sort('status')" class="sortable-header">Durum</th>
+                          <th>Actions</th> 
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngIf="filteredUsers.length === 0">
+                          <td colspan="13" style="text-align: center;">Sonuç Bulunamadı</td>
+                        </tr>
+                        <tr *ngFor="let user of filteredUsers | slice:0:linesToShow; let i = index">
+                            <td><input type="checkbox" [(ngModel)]="user.selected"></td>
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ user.userDetails.firstName }}</td>
+                            <td>{{ user.userDetails.lastName }}</td>
+                            <td>{{ user.userDetails.city }}</td>
+                            <td>{{ user.university }}</td>
+                            <td>{{ user.program }}</td>
+                            <td>{{ user.gpa }}</td>
+                            <td>{{ user.userDetails.email }}</td>
+                            <td>{{ user.userDetails.telNum }}</td>
+                            <td>{{ user.references[0]?.referenceName }}</td>
+                            <td>
+                              
+                              <span class="status-icon approved-icon">&#10004;</span> 
+                            </td>
+                            <td>
+                              <button class="btn btn-primary" (click)="viewUser(user)">Göster</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <div class="button-row">
+                        <div *ngIf="linesToShow < filteredUsers.length">
+                            <button (click)="showMoreLines()" style="min-width: 150px;">Daha fazla göster</button>
+                        </div>
+                        
+                        <button class="export-button" (click)="exportAsExcel()">Excel olarak indir</button>
+                        <div class="onay-reject-buttons">
+                            <button class="btn btn-danger" (click)="rejectSelected()">Reddet</button>
+                            <button class="btn btn-success" (click)="approveSelected()">Onayla</button>
+                        </div>
+                      </div>
+                    <button class="btn btn-danger" (click)="confirmDeleteSelectedUsers()">Seçilenleri Sil</button>
+      
+                    </div>
+                </main>
+            </main>
+        </div>
+                
+              
+                <!-- Close the body and html tags -->
+              </body>
+              </html>

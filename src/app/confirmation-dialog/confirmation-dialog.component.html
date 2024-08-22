@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Onay</h2>
+<mat-dialog-content>Gerçekten silmek istiyor musunuz?</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Hayır</button>
+
+  <button mat-button color="warn" class="confirm-button" (click)="onConfirm()" cdkFocusInitial>Evet</button>
+
+</mat-dialog-actions>

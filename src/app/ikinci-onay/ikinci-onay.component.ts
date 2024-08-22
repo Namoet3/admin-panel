@@ -1,3 +1,4 @@
+
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule, AbstractControl, FormControl, FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
@@ -47,17 +48,18 @@ export interface User {
   references: Reference[];
   memberships: Membership[];
   languages: Language[];
+  status: string;
 }
 
 
 @Component({
-  selector: 'app-ilk-onay',
+  selector: 'app-ikinci-onay',
   standalone: true,
   imports: [CommonModule, HttpClientModule, FormsModule, RouterModule],
-  templateUrl: './ilk-onay.component.html',
-  styleUrl: './ilk-onay.component.scss'
+  templateUrl: './ikinci-onay.component.html',
+  styleUrls: ['./ikinci-onay.component.scss'], 
 })
-export class IlkOnayComponent implements OnInit{
+export class IkinciOnayComponent implements OnInit{
   isDropdownOpen: boolean = false;
   users: any[] = [];
   filteredUsers: any[] = [];
@@ -91,7 +93,7 @@ export class IlkOnayComponent implements OnInit{
 
   constructor(private userService: UserService, private dialog: MatDialog, private loggingService: LoggingService, private http: HttpClient) { }
   ngOnInit(): void {
-    this.loadUsers();
+    this.loadApprovedUsers();
   }
   
   toggleDropdown(event: MouseEvent) {
@@ -103,7 +105,8 @@ export class IlkOnayComponent implements OnInit{
       .filter(user => user.selected)
       .forEach(user => {
         user.status = user.status === 'Approved' ? 'Pending' : 'Approved';
-        this.updateUserStatus(user); 
+        this.updateUserStatus(user);
+        this.filteredUsers = this.filteredUsers.filter(u => u.id !== user.id); 
       });
 }
 
@@ -113,6 +116,7 @@ rejectSelected() {
       .forEach(user => {
         user.status = user.status === 'Rejected' ? 'Pending' : 'Rejected';
         this.updateUserStatus(user); 
+        this.filteredUsers = this.filteredUsers.filter(u => u.id !== user.id); 
       });
 }
 
@@ -124,20 +128,16 @@ updateUserStatus(user: any) {
         error => console.error('Error updating user status', error)
       );
 }
-loadUsers(): void {
+loadApprovedUsers(): void {
   this.userService.getAllUsers().subscribe(
-    (data: any[]) => {
-      this.users = data.map(user => ({
-        ...user, 
-        selected: false,
-        status: user.status || 'Pending' 
-      })); 
+    (data: User[]) => {
+      this.users = data.filter(user => user.status === 'Approved');
       this.filteredUsers = [...this.users];
     },
     error => console.error('Error fetching users', error)
   );
 }
-  
+
   toggleSelectAll(event: any): void {
     const checked = event.target.checked;
     this.filteredUsers.forEach(user => user.selected = checked);
@@ -261,7 +261,7 @@ loadUsers(): void {
           return nameMatches && proficiencyMatches;
         });
   
-        const matchesDisability = this.filter.disability === '' || (user.healthStat?.toLowerCase().trim() === this.filter.disability.toLowerCase().trim());
+      const matchesDisability = this.filter.disability === '' || user.healthStat?.toLowerCase() === this.filter.disability.toLowerCase();
   
      
 
@@ -346,8 +346,8 @@ loadUsers(): void {
     
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(flattenedData);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Users');
+    XLSX.utils.book_append_sheet(wb, ws, 'Approved Users');
     
-    XLSX.writeFile(wb, 'UsersData.xlsx');
+    XLSX.writeFile(wb, 'ApprovedUsersData.xlsx');
   }
 }

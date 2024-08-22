@@ -1,0 +1,166 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<h2 mat-dialog-title>İş Başvurusu Detayları</h2>
+<mat-dialog-content>
+  
+  <div class="no-data-container" *ngIf="!data.jobExperiences?.length || !data.references?.length || !data.languages?.length || !data.skillCertificates?.length || !data.memberships?.length">
+    <div *ngIf="!data.jobExperiences?.length" class="no-data-box">
+      İş geçmişi yok
+    </div>
+    <div *ngIf="!data.references?.length" class="no-data-box">
+      Referansı yok
+    </div>
+    <div *ngIf="!data.languages?.length" class="no-data-box">
+      Yabancı dil bilgisi yok
+    </div>
+    <div *ngIf="!data.skillCertificates?.length" class="no-data-box">
+      Sertifika bilgisi yok
+    </div>
+    <div *ngIf="!data.memberships?.length" class="no-data-box">
+      Üyelik bilgisi yok
+    </div>
+  </div>
+
+  
+  <div class="user-detail-container">
+    
+    <div class="column">
+      <div class="section-container">
+        <h3>Kişisel Bilgiler</h3>
+        <div class="divider"></div>
+        <p><strong>Ad:</strong> {{ data.userDetails.firstName }}</p>
+        <p><strong>Soyad:</strong> {{ data.userDetails.lastName }}</p>
+        <p><strong>Cinsiyet:</strong> {{ data.userDetails.gender }}</p>
+        <p><strong>Medeni Durum:</strong> {{ data.userDetails.marriageStatus }}</p>
+        <p><strong>Doğum Tarihi:</strong> {{ data.userDetails.birthdate | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Uyruk:</strong> {{ data.userDetails.nationality }}</p>
+        <p><strong>Doğum Yeri:</strong> {{ data.userDetails.birthplace }}</p>
+        <p><strong>Kimlik Numarası:</strong> {{ data.userDetails.tcNo }}</p>
+        <p><strong>Şehir:</strong> {{ data.userDetails.city }}</p>
+        <p><strong>İlçe:</strong> {{ data.userDetails.district }}</p>
+        <p><strong>Adres:</strong> {{ data.userDetails.address }}</p>
+        <p><strong>Posta Kodu:</strong> {{ data.userDetails.postal }}</p>
+        <p><strong>Telefon:</strong> {{ data.userDetails.telNum }}</p>
+        <p><strong>E-posta:</strong> {{ data.userDetails.email }}</p>
+      </div>
+
+      <div *ngIf="data.references && data.references.length > 0" class="section-container">
+        <h3>Referanslar</h3>
+        <div class="divider"></div>
+        <div *ngFor="let ref of data.references; let i = index">
+          <p><strong>Ad Soyad:</strong> {{ ref.referenceName }}</p>
+          <p><strong>Şirket:</strong> {{ ref.referenceCompany }}</p>
+          <p><strong>Telefon:</strong> {{ ref.referencePhone }}</p>
+          <p><strong>E-posta:</strong> {{ ref.referenceEmail }}</p>
+          <div *ngIf="i < data.references.length - 1" class="experience-divider"></div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="column">
+      <div class="section-container">
+        <h3>Eğitim</h3>
+        <div class="divider"></div>
+        <p><strong>Eğitim Seviyesi:</strong> {{ data.educationLevel }}</p>
+        <p><strong>Lise:</strong> {{ data.highschool }}</p>
+        <p><strong>Üniversite:</strong> {{ data.university }}</p>
+        <p><strong>Bölüm:</strong> {{ data.program }}</p>
+        <p><strong>Mezuniyet Yılı:</strong> {{ data.graduateDate | date:'dd/MM/yyyy' }}</p>
+        <p><strong>GPA:</strong> {{ data.gpa }}</p>
+      </div>
+
+      
+      <div *ngIf="data.jobExperiences && data.jobExperiences.length > 0" class="section-container">
+        <h3>İş Deneyimi</h3>
+        <div class="divider"></div>
+        <div *ngFor="let experience of data.jobExperiences; let i = index">
+          <p><strong>Şirket:</strong> {{ experience.company }}</p>
+          <p><strong>Pozisyon:</strong> {{ experience.position }}</p>
+          <p><strong>Yıllar:</strong>
+            {{ experience.startDate | date:'MMM yyyy' }} -
+            {{ experience.endDate ? (experience.endDate | date:'MMM yyyy') : 'Present' }}
+          </p>
+          <p><strong>Görev:</strong> {{ experience.responsibilities }}</p>
+          <div *ngIf="i < data.jobExperiences.length - 1" class="experience-divider"></div>
+        </div>
+      </div>
+
+      
+      <div *ngIf="data.memberships && data.memberships.length > 0" class="section-container">
+        <h3>Üyelikler</h3>
+        <div class="divider"></div>
+        <div *ngFor="let membership of data.memberships; let i = index">
+          <p><strong>Üyelik İsmi:</strong> {{ membership.membershipName }}</p>
+          <div *ngIf="i < data.memberships.length - 1" class="experience-divider"></div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="column">
+      <div class="section-container">
+        <h3>Diğer Bilgiler</h3>
+        <div class="divider"></div>
+        <p *ngIf="data.militaryStatus"><strong>Askerlik Durumu:</strong> {{ data.militaryStatus }}</p>
+        <p *ngIf="data.militaryDate"><strong>Askerlik Tarihi:</strong> {{ data.militaryDate | date:'dd/MM/yyyy' }}</p>
+        <p *ngIf="data.healthStat"><strong>Sağlık Durumu:</strong> {{ data.healthStat }}</p>
+        <p *ngIf="data.health"><strong>Engel Durumu:</strong> {{ data.health }}</p>
+        <p *ngIf="data.disability"><strong>Engeli varsa sebebi:</strong> {{ data.disability }}</p>
+        <p *ngIf="data.criminal"><strong>Adli Sicil Kaydı:</strong> {{ data.criminal }}</p>
+        <p *ngIf="data.criminalReason"><strong>Adli Sicil Kaydı varsa sebebi:</strong> {{ data.criminalReason }}</p>
+        <p *ngIf="data.criminalDate"><strong>Adli Sicil Kaydı varsa tarihi:</strong> {{ data.criminalDate | date:'dd/MM/yyyy' }}</p>
+        <p *ngIf="data.CriminalRecordFile">
+          <strong>Belgesi:</strong>
+          <a [href]="getDownloadLink(data.userId, data.CriminalRecordFile)" download>
+            <i class="fa fa-download"></i>
+          </a>
+        </p>
+        <p *ngIf="data.hobbies"><strong>Hobiler:</strong> {{ data.hobbies }}</p>
+        <p *ngIf="data.cvFile">
+          <strong>CV Dosyası:</strong>
+          <a [href]="getDownloadLink(data.userId, data.cvFile)" download>
+            <i class="fa fa-download"></i>
+          </a>
+          
+        </p>
+      </div>
+
+      <div *ngIf="data.languages && data.languages.length > 0" class="section-container">
+        <h3>Yabancı Diller</h3>
+        <div class="divider"></div>
+        <div *ngFor="let language of data.languages; let i = index">
+          <p><strong>Dil:</strong> {{ language.languageName }}</p>
+          <p><strong>Seviye:</strong> {{ language.proficiency }}</p>
+          <div *ngIf="i < data.languages.length - 1" class="experience-divider"></div>
+        </div>
+      </div>
+
+      
+      <div *ngIf="data.skillCertificates && data.skillCertificates.length > 0" class="section-container">
+        <h3>Yetenek ve Sertifikalar</h3>
+        <div class="divider"></div>
+        <p><strong>Yetenekler:</strong> {{ data.skills }}</p>
+        <div *ngFor="let cer of data.skillCertificates; let i = index">
+          <p><strong>Sertifika İsmi:</strong> {{ cer.certificateName }}</p>
+          <p>
+            <strong>Belgesi: </strong>
+            <a [href]="getDownloadLink(data.userId, cer.certificateFile)" download>
+              <i class="fa fa-download"></i>
+            </a>
+          </p>
+          <div *ngIf="i < data.skillCertificates.length - 1" class="experience-divider"></div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</mat-dialog-content>
+<div class="dialog-footer">
+  <button mat-button (click)="onClose()" class="close-button">Kapat</button>
+</div>
+
+<!-- 
+<mat-dialog-actions>
+  
+</mat-dialog-actions> -->

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GÜRİŞ Job Application</title>
+    <link rel="stylesheet" href="log-page.component.scss">
+</head>
+<body>
+  <div class="top-section">
+    <div class="image-row">
+      <a href="https://www.guris.com.tr/" target="_blank">
+        <img src="assets/guris_logo1.png" alt="Guris logo" loading="lazy" class="image-logo">
+      </a>  
+      <h1 class="form-title">Başvurular</h1>
+      <div class="user-info">
+        <span>Hoşgeldin, <strong>Admin</strong></span>
+        <button class="logout-btn">Çıkış Yap</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <aside class="sidebar">
+      <div class="divider"></div>
+      <nav class="job-panel-nav">
+        <ul>
+          <li class="dropdown">
+            <h4 class="dropdown-toggle" (click)="toggleDropdown($event)">İş Başvuru Paneli</h4>
+            <ul class="dropdown-menu" *ngIf="isDropdownOpen">
+              <li><a routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a></li> 
+              <li><a routerLink="/ilk-onay" routerLinkActive="active-link">1. Onay</a></li>
+              <li><a routerLink="/ikinci-onay" routerLinkActive="active-link">2. Onay</a></li>
+              <li><a routerLink="/logs" routerLinkActive="active-link">Log Kayıtları</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <main>
+      <div class="charts-container">
+        <div class="log-container">
+            <h2>Silinen Başvuru Logları</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Seç</th>
+                        <th>İsim</th>
+                        <th>Soyadı</th>
+                        <th>Email</th>
+                        <th>Silindiği Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let log of logs.slice(0, visibleLogs)">
+                        <td><input type="checkbox" [(ngModel)]="log.selected" /></td>
+                        <td>{{ log.userDetails.firstName }}</td>
+                        <td>{{ log.userDetails.lastName }}</td>
+                        <td>{{ log.userDetails.email }}</td>
+                        <td>{{ log.deletedAt | date:'medium' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="actions-container">
+                <div class="left-actions">
+                    <button mat-button (click)="deleteAllDeletedUsers()">Tümünü sil</button>
+                    <button mat-button (click)="deleteSelectedDeletedUsers()">Seçilileri sil</button>
+                </div>
+                <div class="right-actions">
+                    <div *ngIf="visibleLogs < logs.length" class="show-more">
+                        <button mat-button (click)="showMoreLogs()">Daha fazla göster</button>
+                    </div>
+                    <button mat-raised-button class="restore-button" (click)="restoreSelected()">Seçilenleri geri yükle</button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="log-section">
+            <h2>Sayfa Ziyaretleri</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Zamanı</th>
+                        <th>IP Address</th>
+                        <th>Lokasyon</th>
+                        <th>Yapan Kişi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let log of pageVisitLogs | slice:0:visiblePageVisitLogs; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ log.timestamp | date:'short' }}</td>
+                        <td>{{ log.ipAddress }}</td>
+                        <td>{{ log.location }}</td>
+                        <td>{{ log.performedBy }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="show-more-less-row">
+              <button *ngIf="visiblePageVisitLogs > 5" class="show-less-Visit" (click)="showLessPageVisitLogs()">Daha az göster</button>
+              <button *ngIf="visiblePageVisitLogs < pageVisitLogs.length" class="show-more-Visit" (click)="showMorePageVisitLogs()">Daha Fazla Göster</button>
+              
+            </div>
+        </div>
+    </div>
+      <div class="aksiyon-container">
+        <h2>Aksiyon Logları</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Aksiyon</th>
+              <th>Yapan Kişi</th>
+              <th>Zamanı</th>
+              <th>Detayları</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let log of actionLogs.slice(0, visibleActionLogs )">
+              <td>{{ log.action }}</td>
+              <td>{{ log.performedBy }}</td>
+              <td>{{ log.timestamp | date:'medium' }}</td>
+              <td>{{ log.details }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="actions-row">
+          <div class="actions">
+            <button mat-button (click)="clearLogs()">Clear All Logs</button>
+          </div>
+          <div *ngIf="visibleActionLogs < actionLogs.length" class="show-more">
+            <button mat-button (click)="showMoreActionLogs()">Daha fazla göster</button>
+          </div>
+        </div>
+        
+        <div *ngIf="lastClearAction">
+          <h3>Son Loglar Temizlendi</h3>
+          <p>{{ lastClearAction.timestamp | date:'medium' }} - {{ lastClearAction.performedBy }}</p>
+          <p>{{ lastClearAction.details }}</p>
+        </div>
+      </div>
+
+      
+
+
+        
+      
+    </main>
+  </div>
+
+  <!-- Close the body and html tags -->
+</body>
+</html>
